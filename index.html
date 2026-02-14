@@ -1,0 +1,1183 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Petrichor Science Experiments - Modern</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&family=Azeret+Mono:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <style>
+      /* 1. MODERN RESET & BASE */
+      html,
+      body,
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        background-color: #f1f5f9;
+        margin: 0;
+        padding: 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 48px;
+        color: #334155;
+        font-family: "Inter", sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* 2. SLIDE CONTAINER */
+      .slide-container {
+        background-color: #ffffff;
+        border-radius: 24px;
+        box-shadow:
+          0 20px 25px -5px rgba(0, 0, 0, 0.1),
+          0 8px 10px -6px rgba(0, 0, 0, 0.01);
+        display: flex;
+        flex-direction: column;
+        height: 720px;
+        justify-content: center;
+        overflow: hidden;
+        padding: 60px;
+        position: relative;
+        width: 1280px;
+        border: 1px solid rgba(255, 255, 255, 0.5);
+      }
+
+      /* Background Watermark Logo */
+      .bg-logo-watermark {
+        position: absolute;
+        top: 50%;
+        left: 20%;
+        transform: translate(-50%, -50%);
+        width: 600px;
+        opacity: 0.04;
+        pointer-events: none;
+        z-index: 0;
+        filter: grayscale(100%);
+      }
+
+      /* Top Right Logo Container */
+      .logo-badge-container {
+        position: absolute;
+        top: 40px;
+        right: 40px;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        z-index: 20;
+        pointer-events: none;
+      }
+
+      .logo-badge {
+        height: 70px;
+        width: auto;
+        object-fit: contain;
+        filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+      }
+
+      .logo-separator {
+        width: 1px;
+        height: 40px;
+        background-color: #cbd5e1;
+      }
+
+      .volunteer-count {
+        position: absolute;
+        bottom: 30px;
+        right: 40px;
+        font-family: "Azeret Mono", monospace;
+        font-size: 13px;
+        font-weight: 600;
+        color: #64748b;
+        background: #f8fafc;
+        padding: 8px 16px;
+        border-radius: 9999px;
+        border: 1px solid #e2e8f0;
+        z-index: 10;
+        letter-spacing: 0.05em;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .volunteer-count::before {
+        content: "";
+        display: block;
+        width: 8px;
+        height: 8px;
+        background-color: #0ea5e9;
+        border-radius: 50%;
+      }
+
+      .slide-container > * {
+        z-index: 1;
+      }
+
+      /* 3. TYPOGRAPHY */
+      .slide-paragraph {
+        line-height: 1.7;
+        margin: 0 0 20px 0;
+        font-weight: 400;
+        color: #475569;
+        font-size: 18px;
+        max-width: 90%;
+      }
+
+      .slide-title {
+        font-size: 48px;
+        text-align: left;
+        width: 100%;
+        margin-bottom: 12px;
+        color: #0f172a;
+        font-family: "Inter", sans-serif;
+        font-weight: 800;
+        letter-spacing: -0.025em;
+      }
+
+      .subtitle {
+        font-family: "Azeret Mono", monospace;
+        font-size: 16px;
+        color: #0891b2;
+        margin-bottom: 40px;
+        width: 100%;
+        text-align: left;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-weight: 600;
+      }
+
+      /* 4. TITLE SLIDE SPECIFIC */
+      .title-layout {
+        background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+        border-radius: 20px;
+        padding: 60px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+        position: relative;
+        text-align: center;
+      }
+
+      .title-layout h1 {
+        font-size: 84px;
+        color: #0f172a;
+        margin: 0 0 16px 0;
+        font-weight: 800;
+        letter-spacing: -0.04em;
+        background: linear-gradient(to right, #0f172a, #334155);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .title-layout .main-subtitle {
+        font-size: 28px;
+        color: #0ea5e9;
+        font-family: "Azeret Mono", monospace;
+        margin-bottom: 32px;
+        font-weight: 500;
+        letter-spacing: 1px;
+      }
+
+      .title-layout p {
+        font-size: 22px;
+        max-width: 700px;
+        color: #64748b;
+        font-weight: 400;
+      }
+
+      /* Coordinator Box Styles */
+      .coordinators-box {
+        position: absolute;
+        bottom: 30px;
+        left: 40px;
+        padding: 12px 24px;
+        background: rgba(255, 255, 255, 0.85);
+        border: 1px solid #e2e8f0;
+        border-radius: 16px;
+        text-align: left;
+        backdrop-filter: blur(8px);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        z-index: 10;
+      }
+
+      .coord-title {
+        display: block;
+        font-family: "Azeret Mono", monospace;
+        font-size: 11px;
+        color: #64748b;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 4px;
+        font-weight: 700;
+      }
+
+      .coord-names {
+        font-size: 16px;
+        color: #0f172a;
+        font-weight: 700;
+        font-family: "Inter", sans-serif;
+      }
+
+      /* 5. CONTENT LAYOUTS */
+      .content-area {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+        justify-content: center;
+      }
+
+      .two-column {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: center;
+        height: 100%;
+      }
+
+      .text-col {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      /* 6. IMAGE STYLING */
+      .image-wrapper {
+        height: 480px;
+        width: 100%;
+        max-width: 100%;
+        overflow: hidden;
+        border-radius: 16px;
+        box-shadow:
+          0 10px 15px -3px rgba(0, 0, 0, 0.1),
+          0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        background: #f8fafc;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+
+      .image-wrapper:hover {
+        transform: translateY(-4px);
+        box-shadow:
+          0 20px 25px -5px rgba(0, 0, 0, 0.1),
+          0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      }
+
+      .image-wrapper img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      /* 7. EXPERIMENT TEXT DETAILS */
+      .experiment-aim,
+      .experiment-principle {
+        font-weight: 700;
+        color: #0d9488;
+        display: inline-block;
+        margin-bottom: 8px;
+        font-family: "Azeret Mono", monospace;
+        font-size: 14px;
+        background: #ccfbf1;
+        padding: 4px 8px;
+        border-radius: 6px;
+      }
+
+      ul.content-list {
+        list-style: none;
+        padding: 0;
+        margin: 10px 0 20px 0;
+      }
+
+      ul.content-list li {
+        margin-bottom: 12px;
+        padding-left: 24px;
+        position: relative;
+        font-size: 18px;
+        color: #475569;
+        font-weight: 500;
+      }
+
+      ul.content-list li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 10px;
+        width: 8px;
+        height: 8px;
+        background-color: #f97316;
+        border-radius: 50%;
+      }
+
+      /* 8. Q&A LAYOUT */
+      .qa-layout {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        background: #f8fafc;
+        border-radius: 20px;
+        border: 1px dashed #cbd5e1;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- SLIDE 1: Title_Slide -->
+    <div class="slide-container" id="slide1">
+      <img
+        data-key="logo_iiser"
+        class="bg-logo-watermark"
+        alt="IISER Watermark"
+      />
+
+      <div class="logo-badge-container">
+        <img
+          data-key="logo_iiser"
+          class="logo-badge"
+          alt="IISER Tirupati Logo"
+        />
+        <div class="logo-separator"></div>
+        <img
+          data-key="logo_petrichor"
+          class="logo-badge"
+          alt="Petrichor Logo"
+        />
+      </div>
+
+      <div class="title-layout">
+        <h1>Petrichor: The ECS Club</h1>
+        <div class="main-subtitle">Science Day Experiments</div>
+        <p>
+          Interactive demonstrations exploring Geology, Physics, and
+          Environmental Science.
+        </p>
+      </div>
+
+      <div class="coordinators-box">
+        <span class="coord-title">Club Coordinators</span>
+        <div class="coord-names">Nitish Pagdotra &bull; Vansh Thakur</div>
+      </div>
+
+      <div class="volunteer-count">Volunteers: 2</div>
+    </div>
+
+    <!-- SLIDE 2: Effect of CO2 on Temperature -->
+    <div class="slide-container" id="slide2">
+      <img
+        data-key="logo_iiser"
+        class="bg-logo-watermark"
+        alt="IISER Watermark"
+      />
+
+      <div class="logo-badge-container">
+        <img
+          data-key="logo_iiser"
+          class="logo-badge"
+          alt="IISER Tirupati Logo"
+        />
+        <div class="logo-separator"></div>
+        <img
+          data-key="logo_petrichor"
+          class="logo-badge"
+          alt="Petrichor Logo"
+        />
+      </div>
+
+      <div class="content-area">
+        <h2 class="slide-title">Effect of CO2 on Temperature</h2>
+        <div class="subtitle">Global Warming Model</div>
+        <div class="two-column">
+          <div class="text-col">
+            <div><span class="experiment-aim">AIM</span></div>
+            <p class="slide-paragraph">
+              Demonstrate how increased CO2 levels trap heat energy.
+            </p>
+            <div><span class="experiment-principle">OBSERVATION</span></div>
+            <p class="slide-paragraph">
+              Two bottles—one with air, one with CO2—are placed under a light
+              source. The temperature rise is recorded to show the greenhouse
+              effect in action.
+            </p>
+            <p class="slide-paragraph" style="font-weight: 500; color: #334155">
+              The CO2 bottle consistently retains more heat, mirroring
+              atmospheric warming.
+            </p>
+          </div>
+          <div class="image-wrapper">
+            <img
+              data-key="ex_co2_warming"
+              alt="CO2 Global Warming Bottle Experiment"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="volunteer-count">Volunteers: 2</div>
+    </div>
+
+    <!-- SLIDE 3: Groundwater Depletion & Recharge -->
+    <div class="slide-container" id="slide3">
+      <img
+        data-key="logo_iiser"
+        class="bg-logo-watermark"
+        alt="IISER Watermark"
+      />
+      <div class="logo-badge-container">
+        <img
+          data-key="logo_iiser"
+          class="logo-badge"
+          alt="IISER Tirupati Logo"
+        />
+        <div class="logo-separator"></div>
+        <img
+          data-key="logo_petrichor"
+          class="logo-badge"
+          alt="Petrichor Logo"
+        />
+      </div>
+
+      <div class="content-area">
+        <h2 class="slide-title">Groundwater Depletion & Recharge</h2>
+        <div class="subtitle">A Visual Aquifer Model</div>
+        <div class="two-column">
+          <div class="text-col">
+            <p class="slide-paragraph">
+              This working model uses layers of sand, gravel, and clay to
+              represent an aquifer. It visually demonstrates:
+            </p>
+            <ul class="content-list">
+              <li>
+                <strong>Depletion:</strong> Rapid water level drop due to
+                excessive pumping.
+              </li>
+              <li>
+                <strong>Recharge:</strong> How rainwater harvesting slowly
+                restores the water table.
+              </li>
+            </ul>
+            <div><span class="experiment-aim">KEY LESSON</span></div>
+            <p class="slide-paragraph">
+              Natural recharge is often slower than human extraction.
+            </p>
+          </div>
+          <div class="image-wrapper">
+            <img data-key="ex_aquifer" alt="Groundwater Aquifer Model" />
+          </div>
+        </div>
+      </div>
+      <div class="volunteer-count">Volunteers: 2</div>
+    </div>
+
+    <!-- SLIDE 4: Temperature Inversion -->
+    <div class="slide-container" id="slide4">
+      <img
+        data-key="logo_iiser"
+        class="bg-logo-watermark"
+        alt="IISER Watermark"
+      />
+      <div class="logo-badge-container">
+        <img
+          data-key="logo_iiser"
+          class="logo-badge"
+          alt="IISER Tirupati Logo"
+        />
+        <div class="logo-separator"></div>
+        <img
+          data-key="logo_petrichor"
+          class="logo-badge"
+          alt="Petrichor Logo"
+        />
+      </div>
+
+      <div class="content-area">
+        <h2 class="slide-title">Temperature Inversion</h2>
+        <div class="subtitle">Why Pollution Gets Trapped</div>
+        <div class="two-column">
+          <div class="text-col">
+            <div><span class="experiment-aim">CONCEPT</span></div>
+            <p class="slide-paragraph">
+              Demonstrating how cold air traps smoke near the ground.
+            </p>
+            <p class="slide-paragraph">
+              Using a match and a compressed bottle, this model simulates winter
+              smog conditions.
+            </p>
+            <p class="slide-paragraph">
+              When pressure changes, the smoke creates a dense cloud that cannot
+              escape, visually explaining why air quality drops significantly
+              during winter inversions.
+            </p>
+          </div>
+          <div class="image-wrapper">
+            <img
+              data-key="ex_inversion"
+              alt="Temperature Inversion Smoke Bottle"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="volunteer-count">Volunteers: 2</div>
+    </div>
+
+    <!-- SLIDE 5: High in the Sky -->
+    <div class="slide-container" id="slide5">
+      <img
+        data-key="logo_iiser"
+        class="bg-logo-watermark"
+        alt="IISER Watermark"
+      />
+      <div class="logo-badge-container">
+        <img
+          data-key="logo_iiser"
+          class="logo-badge"
+          alt="IISER Tirupati Logo"
+        />
+        <div class="logo-separator"></div>
+        <img
+          data-key="logo_petrichor"
+          class="logo-badge"
+          alt="Petrichor Logo"
+        />
+      </div>
+
+      <div class="content-area">
+        <h2 class="slide-title">High in the Sky</h2>
+        <div class="subtitle">The Venturi Effect</div>
+        <div class="two-column">
+          <div class="text-col">
+            <div><span class="experiment-aim">ISSUE</span></div>
+            <p class="slide-paragraph">
+              High-rise buildings causing beach erosion.
+            </p>
+            <p class="slide-paragraph">
+              Tall buildings can accelerate wind speed by forcing air through
+              narrow gaps (the Venturi Effect).
+            </p>
+            <p class="slide-paragraph">
+              This simulation projects wind flow patterns to hypothesize how new
+              structures might unintentionally strip sand from beaches and
+              deposit it elsewhere.
+            </p>
+          </div>
+          <div class="image-wrapper">
+            <img data-key="ex_venturi" alt="Venturi Effect Simulation" />
+          </div>
+        </div>
+      </div>
+      <div class="volunteer-count">Volunteers: 2</div>
+    </div>
+
+    <!-- SLIDE 6: Deep Depression -->
+    <div class="slide-container" id="slide6">
+      <img
+        data-key="logo_iiser"
+        class="bg-logo-watermark"
+        alt="IISER Watermark"
+      />
+      <div class="logo-badge-container">
+        <img
+          data-key="logo_iiser"
+          class="logo-badge"
+          alt="IISER Tirupati Logo"
+        />
+        <div class="logo-separator"></div>
+        <img
+          data-key="logo_petrichor"
+          class="logo-badge"
+          alt="Petrichor Logo"
+        />
+      </div>
+
+      <div class="content-area">
+        <h2 class="slide-title">Deep Depression</h2>
+        <div class="subtitle">Sand Dune Erosion Control</div>
+        <div class="two-column">
+          <div class="text-col">
+            <div><span class="experiment-aim">PROBLEM</span></div>
+            <p class="slide-paragraph">Wind blowouts in sand dunes.</p>
+            <p class="slide-paragraph">
+              A "blowout" occurs when wind funnels through a gap in a dune,
+              eroding it rapidly.
+            </p>
+            <p class="slide-paragraph">
+              This experiment uses a sandbox and fan to test methods for
+              stopping this erosion, such as planting model vegetation or
+              building windbreaks to stop the "depression" from growing.
+            </p>
+          </div>
+          <div class="image-wrapper">
+            <img data-key="ex_dunes" alt="Sand Dune Erosion Experiment" />
+          </div>
+        </div>
+      </div>
+      <div class="volunteer-count">Volunteers: 2</div>
+    </div>
+
+    <!-- SLIDE 7: Seismograph Experiment -->
+    <div class="slide-container" id="slide7">
+      <img
+        data-key="logo_iiser"
+        class="bg-logo-watermark"
+        alt="IISER Watermark"
+      />
+      <div class="logo-badge-container">
+        <img
+          data-key="logo_iiser"
+          class="logo-badge"
+          alt="IISER Tirupati Logo"
+        />
+        <div class="logo-separator"></div>
+        <img
+          data-key="logo_petrichor"
+          class="logo-badge"
+          alt="Petrichor Logo"
+        />
+      </div>
+
+      <div class="content-area">
+        <h2 class="slide-title">Seismograph Experiment</h2>
+        <div class="subtitle">Detecting Earthquakes</div>
+        <div class="two-column">
+          <div class="text-col">
+            <div><span class="experiment-aim">CHALLENGE</span></div>
+            <p class="slide-paragraph">
+              Can we predict the direction of an impact?
+            </p>
+            <p class="slide-paragraph">
+              By constructing a lateral motion seismograph using a suspended
+              weight and marbles, this model attempts to trace the direction of
+              a shockwave.
+            </p>
+            <p class="slide-paragraph">
+              It demonstrates the principles of inertia and wave propagation
+              used in real seismic stations.
+            </p>
+          </div>
+          <div class="image-wrapper">
+            <img data-key="ex_seismo" alt="Lateral Motion Seismograph" />
+          </div>
+        </div>
+      </div>
+      <div class="volunteer-count">Volunteers: 2</div>
+    </div>
+
+    <!-- SLIDE 8: The Classic Eruption -->
+    <div class="slide-container" id="slide8">
+      <img
+        data-key="logo_iiser"
+        class="bg-logo-watermark"
+        alt="IISER Watermark"
+      />
+      <div class="logo-badge-container">
+        <img
+          data-key="logo_iiser"
+          class="logo-badge"
+          alt="IISER Tirupati Logo"
+        />
+        <div class="logo-separator"></div>
+        <img
+          data-key="logo_petrichor"
+          class="logo-badge"
+          alt="Petrichor Logo"
+        />
+      </div>
+
+      <div class="content-area">
+        <h2 class="slide-title">The Classic Eruption</h2>
+        <div class="subtitle">Volcanic Eruption Experiment</div>
+        <div class="two-column">
+          <div class="text-col">
+            <div><span class="experiment-principle">PRINCIPLE</span></div>
+            <p class="slide-paragraph">
+              Chemical reaction releasing carbon dioxide gas.
+            </p>
+            <p class="slide-paragraph">
+              A simple but effective model of volcanic activity. By mixing
+              baking soda (sodium bicarbonate) with an acid like vinegar (acetic
+              acid), a rapid chemical reaction occurs.
+            </p>
+            <p class="slide-paragraph">
+              This releases carbon dioxide gas, which creates a bubbling,
+              erupting lava flow.
+            </p>
+          </div>
+          <div class="image-wrapper">
+            <img data-key="ex_volcano" alt="Baking Soda Volcano" />
+          </div>
+        </div>
+      </div>
+      <div class="volunteer-count">Volunteers: 2</div>
+    </div>
+
+    <!-- SLIDE 9: Cloud in a Bottle -->
+    <div class="slide-container" id="slide9">
+      <img
+        data-key="logo_iiser"
+        class="bg-logo-watermark"
+        alt="IISER Watermark"
+      />
+      <div class="logo-badge-container">
+        <img
+          data-key="logo_iiser"
+          class="logo-badge"
+          alt="IISER Tirupati Logo"
+        />
+        <div class="logo-separator"></div>
+        <img
+          data-key="logo_petrichor"
+          class="logo-badge"
+          alt="Petrichor Logo"
+        />
+      </div>
+
+      <div class="content-area">
+        <h2 class="slide-title">Cloud in a Bottle</h2>
+        <div class="subtitle">Cloud Formation Experiment</div>
+        <div class="two-column">
+          <div class="text-col">
+            <div><span class="experiment-principle">PRINCIPLE</span></div>
+            <p class="slide-paragraph">Pressure change and condensation.</p>
+            <p class="slide-paragraph">
+              A demonstration of how clouds form. By pressurizing a bottle
+              containing isopropyl alcohol vapor and then rapidly releasing the
+              pressure, the sudden cooling causes the vapor to condense into
+              visible cloud droplets.
+            </p>
+          </div>
+          <div class="image-wrapper">
+            <img data-key="ex_cloud" alt="Cloud in a Bottle Experiment" />
+          </div>
+        </div>
+      </div>
+      <div class="volunteer-count">Volunteers: 2</div>
+    </div>
+
+    <!-- SLIDE 10: Erosion in Action -->
+    <div class="slide-container" id="slide10">
+      <img
+        data-key="logo_iiser"
+        class="bg-logo-watermark"
+        alt="IISER Watermark"
+      />
+      <div class="logo-badge-container">
+        <img
+          data-key="logo_iiser"
+          class="logo-badge"
+          alt="IISER Tirupati Logo"
+        />
+        <div class="logo-separator"></div>
+        <img
+          data-key="logo_petrichor"
+          class="logo-badge"
+          alt="Petrichor Logo"
+        />
+      </div>
+
+      <div class="content-area">
+        <h2 class="slide-title">Erosion in Action</h2>
+        <div class="subtitle">Canyon Formation Experiment</div>
+        <div class="two-column">
+          <div class="text-col">
+            <div><span class="experiment-principle">PRINCIPLE</span></div>
+            <p class="slide-paragraph">Water erosion and sediment transport.</p>
+            <p class="slide-paragraph">
+              By flowing water through a sand-filled tray, we simulate how
+              rivers carve through rock over time.
+            </p>
+            <p class="slide-paragraph">
+              The moving water picks up and transports sediment, gradually
+              creating a deep channel.
+            </p>
+          </div>
+          <div class="image-wrapper">
+            <img data-key="ex_erosion_tray" alt="River Erosion Tray" />
+          </div>
+        </div>
+      </div>
+      <div class="volunteer-count">Volunteers: 2</div>
+    </div>
+
+    <!-- SLIDE 11: Soil Erosion in a Bottle -->
+    <div class="slide-container" id="slide11">
+      <img
+        data-key="logo_iiser"
+        class="bg-logo-watermark"
+        alt="IISER Watermark"
+      />
+      <div class="logo-badge-container">
+        <img
+          data-key="logo_iiser"
+          class="logo-badge"
+          alt="IISER Tirupati Logo"
+        />
+        <div class="logo-separator"></div>
+        <img
+          data-key="logo_petrichor"
+          class="logo-badge"
+          alt="Petrichor Logo"
+        />
+      </div>
+
+      <div class="content-area">
+        <h2 class="slide-title">Soil Erosion in a Bottle</h2>
+        <div class="subtitle">Erosion Experiment</div>
+        <div class="two-column">
+          <div class="text-col">
+            <div><span class="experiment-principle">PRINCIPLE</span></div>
+            <p class="slide-paragraph">
+              Vegetation's role in preventing soil loss.
+            </p>
+            <p class="slide-paragraph">
+              A comparative experiment to demonstrate how plants protect soil.
+            </p>
+            <p class="slide-paragraph">
+              Runoff from bare soil is dark and sediment-heavy, while vegetated
+              soil's runoff is cleaner, illustrating the importance of root
+              systems.
+            </p>
+          </div>
+          <div class="image-wrapper">
+            <img data-key="ex_erosion_bottle" alt="Soil Erosion Bottles" />
+          </div>
+        </div>
+      </div>
+      <div class="volunteer-count">Volunteers: 2</div>
+    </div>
+
+    <!-- SLIDE 12: Clean Water from Earth -->
+    <div class="slide-container" id="slide12">
+      <img
+        data-key="logo_iiser"
+        class="bg-logo-watermark"
+        alt="IISER Watermark"
+      />
+      <div class="logo-badge-container">
+        <img
+          data-key="logo_iiser"
+          class="logo-badge"
+          alt="IISER Tirupati Logo"
+        />
+        <div class="logo-separator"></div>
+        <img
+          data-key="logo_petrichor"
+          class="logo-badge"
+          alt="Petrichor Logo"
+        />
+      </div>
+
+      <div class="content-area">
+        <h2 class="slide-title">Clean Water from Earth</h2>
+        <div class="subtitle">Natural Filtration Experiment</div>
+        <div class="two-column">
+          <div class="text-col">
+            <div><span class="experiment-principle">PRINCIPLE</span></div>
+            <p class="slide-paragraph">
+              Filtration and absorption by soil layers.
+            </p>
+            <p class="slide-paragraph">
+              By layering different types of earth materials like gravel, sand,
+              and charcoal in a container, we can create a simple filter.
+            </p>
+            <p class="slide-paragraph">
+              Dirty water is poured through, and as it passes through each
+              layer, impurities are trapped and absorbed, resulting in cleaner
+              water.
+            </p>
+          </div>
+          <div class="image-wrapper">
+            <img data-key="ex_filtration" alt="Water Filtration Layers" />
+          </div>
+        </div>
+      </div>
+      <div class="volunteer-count">Volunteers: 2</div>
+    </div>
+
+    <!-- SLIDE 13: Geostationary Satellite Model -->
+    <div class="slide-container" id="slide13">
+      <img
+        data-key="logo_iiser"
+        class="bg-logo-watermark"
+        alt="IISER Watermark"
+      />
+      <div class="logo-badge-container">
+        <img
+          data-key="logo_iiser"
+          class="logo-badge"
+          alt="IISER Tirupati Logo"
+        />
+        <div class="logo-separator"></div>
+        <img
+          data-key="logo_petrichor"
+          class="logo-badge"
+          alt="Petrichor Logo"
+        />
+      </div>
+
+      <div class="content-area">
+        <h2 class="slide-title">Geostationary Satellite Model</h2>
+        <div class="subtitle">Orbital Mechanics Experiment</div>
+        <div class="two-column">
+          <div class="text-col">
+            <div><span class="experiment-principle">PRINCIPLE</span></div>
+            <p class="slide-paragraph">
+              Matching Earth's rotation for fixed-point observation.
+            </p>
+            <p class="slide-paragraph">
+              By using a rotating globe and a model satellite on a fixed arm, we
+              demonstrate how an object at a specific altitude and velocity can
+              revolve at the same rate as the Earth.
+            </p>
+            <p class="slide-paragraph">
+              This makes the satellite appear stationary over a single point.
+            </p>
+          </div>
+          <div class="image-wrapper">
+            <img data-key="ex_satellite" alt="Geostationary Satellite Model" />
+          </div>
+        </div>
+      </div>
+      <div class="volunteer-count">Volunteers: 2</div>
+    </div>
+
+    <!-- SLIDE 14: Can You Feel The Difference? -->
+    <div class="slide-container" id="slide14">
+      <img
+        data-key="logo_iiser"
+        class="bg-logo-watermark"
+        alt="IISER Watermark"
+      />
+      <div class="logo-badge-container">
+        <img
+          data-key="logo_iiser"
+          class="logo-badge"
+          alt="IISER Tirupati Logo"
+        />
+        <div class="logo-separator"></div>
+        <img
+          data-key="logo_petrichor"
+          class="logo-badge"
+          alt="Petrichor Logo"
+        />
+      </div>
+
+      <div class="content-area">
+        <h2 class="slide-title">Can You Feel The Difference?</h2>
+        <div class="subtitle">Texture & Geology</div>
+        <div class="two-column">
+          <div class="text-col">
+            <div><span class="experiment-aim">GOAL</span></div>
+            <p class="slide-paragraph">
+              Separate granite, shale, and sandstone by texture alone using
+              touch.
+            </p>
+            <ul class="content-list">
+              <li><strong>Sandstone:</strong> Layering.</li>
+              <li><strong>Shale:</strong> Pressure formed.</li>
+              <li><strong>Granite:</strong> Melting/Cooling.</li>
+            </ul>
+            <p class="slide-paragraph">
+              This experiment tests if distinct geological processes result in
+              distinct, palpable textures.
+            </p>
+          </div>
+          <div class="image-wrapper">
+            <img data-key="ex_rocks" alt="Rock Texture Activity" />
+          </div>
+        </div>
+      </div>
+      <div class="volunteer-count">Volunteers: 2</div>
+    </div>
+
+    <!-- SLIDE 15: Plated Guesses -->
+    <div class="slide-container" id="slide15">
+      <img
+        data-key="logo_iiser"
+        class="bg-logo-watermark"
+        alt="IISER Watermark"
+      />
+      <div class="logo-badge-container">
+        <img
+          data-key="logo_iiser"
+          class="logo-badge"
+          alt="IISER Tirupati Logo"
+        />
+        <div class="logo-separator"></div>
+        <img
+          data-key="logo_petrichor"
+          class="logo-badge"
+          alt="Petrichor Logo"
+        />
+      </div>
+
+      <div class="content-area">
+        <h2 class="slide-title">Plated Guesses</h2>
+        <div class="subtitle">Reconstructing Pangaea</div>
+        <div class="two-column">
+          <div class="text-col">
+            <div><span class="experiment-principle">THEORY</span></div>
+            <p class="slide-paragraph">Plate Tectonics & Continental Drift.</p>
+            <p class="slide-paragraph">
+              Scientists theorize that all continents were once a supercontinent
+              called Pangaea.
+            </p>
+            <p class="slide-paragraph">
+              In this activity, we trace and cut out the continents to see if
+              they fit together like a jigsaw puzzle, demonstrating geological
+              drift.
+            </p>
+          </div>
+          <div class="image-wrapper">
+            <img data-key="ex_pangaea" alt="Pangaea Puzzle" />
+          </div>
+        </div>
+      </div>
+      <div class="volunteer-count">Volunteers: 2</div>
+    </div>
+
+    <!-- SLIDE 16: What You See Is Not What You Get -->
+    <div class="slide-container" id="slide16">
+      <img
+        data-key="logo_iiser"
+        class="bg-logo-watermark"
+        alt="IISER Watermark"
+      />
+      <div class="logo-badge-container">
+        <img
+          data-key="logo_iiser"
+          class="logo-badge"
+          alt="IISER Tirupati Logo"
+        />
+        <div class="logo-separator"></div>
+        <img
+          data-key="logo_petrichor"
+          class="logo-badge"
+          alt="Petrichor Logo"
+        />
+      </div>
+
+      <div class="content-area">
+        <h2 class="slide-title">What You See Is Not What You Get</h2>
+        <div class="subtitle">Mineral Streak Test</div>
+        <div class="two-column">
+          <div class="text-col">
+            <div><span class="experiment-principle">PRINCIPLE</span></div>
+            <p class="slide-paragraph">Identification by powder color.</p>
+            <p class="slide-paragraph">
+              A mineral's surface color can be misleading due to oxidation or
+              impurities.
+            </p>
+            <p class="slide-paragraph">
+              The "streak test" involves rubbing the mineral on an unglazed
+              porcelain tile to reveal its true powder color. This is a reliable
+              diagnostic tool for geologists.
+            </p>
+          </div>
+          <div class="image-wrapper">
+            <img data-key="ex_streak" alt="Mineral Streak Test" />
+          </div>
+        </div>
+      </div>
+      <div class="volunteer-count">Volunteers: 2</div>
+    </div>
+
+    <!-- SLIDE 17: Q&A -->
+    <div class="slide-container" id="slide17">
+      <img
+        data-key="logo_iiser"
+        class="bg-logo-watermark"
+        alt="IISER Watermark"
+      />
+      <div class="logo-badge-container">
+        <img
+          data-key="logo_iiser"
+          class="logo-badge"
+          alt="IISER Tirupati Logo"
+        />
+        <div class="logo-separator"></div>
+        <img
+          data-key="logo_petrichor"
+          class="logo-badge"
+          alt="Petrichor Logo"
+        />
+      </div>
+
+      <div class="qa-layout">
+        <h2 class="slide-title" style="text-align: center">Questions?</h2>
+        <p class="slide-paragraph">
+          Thank you for exploring these experiments with us.
+        </p>
+      </div>
+      <div class="volunteer-count">Volunteers: 2</div>
+    </div>
+
+    <!-- IMAGE LOADER SCRIPT -->
+    <script>
+      // Configuration: Map simple keys to image URLs
+      // Local images are referenced from the 'Assets/' folder
+      const imageAssets = {
+        // Logos (kept remote as they weren't in the provided Assets list)
+        logo_iiser: "Assets/iiser.jpg",
+        logo_petrichor: "Assets/petrichor.jpeg",
+
+        // Experiment Images mapped to Assets folder
+        ex_co2_warming: "Assets/co2.png",
+        ex_aquifer: "Assets/gwater.png",
+        ex_inversion: "Assets/temp.png",
+        ex_venturi: "Assets/high.png",
+        ex_dunes: "Assets/deep.png",
+
+        // Seismograph image was missing in the provided list, keeping remote fallback
+        ex_seismo: "Assets/seismograph.png",
+
+        ex_volcano: "Assets/lava.png",
+        ex_cloud: "Assets/cloud.png",
+        ex_erosion_tray: "Assets/canyon.png",
+        ex_erosion_bottle: "Assets/erosion.png",
+        ex_filtration: "Assets/filter.png",
+        ex_satellite: "Assets/satellite.png",
+        ex_rocks: "Assets/rocks.png",
+        ex_pangaea: "Assets/pangea.png",
+        ex_streak: "Assets/streak.png",
+      };
+
+      // Auto-load images based on data-key attribute
+      document.addEventListener("DOMContentLoaded", () => {
+        const images = document.querySelectorAll("img[data-key]");
+
+        images.forEach((img) => {
+          const key = img.getAttribute("data-key");
+          if (imageAssets[key]) {
+            img.src = imageAssets[key];
+            // Add error handling to fallback or log if local image is missing
+            img.onerror = function () {
+              console.warn(`Failed to load image: ${this.src}`);
+              this.style.background = "#f1f5f9"; // Placeholder visual
+              this.alt += " (Image not found)";
+            };
+          } else {
+            console.warn(`Image key not found in configuration: ${key}`);
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
